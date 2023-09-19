@@ -1,0 +1,41 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/addto-active.png</file>
+        <file>images/addto.png</file>
+        <file>images/close.png</file>
+        <file>images/comment-active.png</file>
+        <file>images/comment.png</file>
+        <file>images/fm-active.png</file>
+        <file>images/fm.png</file>
+        <file>images/heart-active.png</file>
+        <file>images/heart.png</file>
+        <file>images/logo.png</file>
+        <file>images/logo2.png</file>
+        <file>images/microphone-active.png</file>
+        <file>images/microphone.png</file>
+        <file>images/music-symbol-active.png</file>
+        <file>images/music-symbol.png</file>
+        <file>images/options-active.png</file>
+        <file>images/options.png</file>
+        <file>images/pause-fill.png</file>
+        <file>images/play-filling.png</file>
+        <file>images/play-his-active.png</file>
+        <file>images/play-his.png</file>
+        <file>images/play-loop-list-active.png</file>
+        <file>images/play-loop-list.png</file>
+        <file>images/play-loop-one-active.png</file>
+        <file>images/play-loop-one.png</file>
+        <file>images/play-queue-active.png</file>
+        <file>images/play-queue.png</file>
+        <file>images/play-random-active.png</file>
+        <file>images/play-random.png</file>
+        <file>images/play-sequence-active.png</file>
+        <file>images/play-sequence.png</file>
+        <file>images/skip-next-active.png</file>
+        <file>images/skip-next.png</file>
+        <file>images/skip-previous-active.png</file>
+        <file>images/skip-previous.png</file>
+        <file>images/volume-active.png</file>
+        <file>images/volume.png</file>
+    </qresource>
+</RCC>

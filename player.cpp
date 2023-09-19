@@ -1,6 +1,7 @@
-#include "controller.h"
-#include "movewinwidget.h"
 #include "player.h"
+#include "topbar.h"
+#include "controlpanel.h"
+#include "leftpanel.h"
 
 #include <QDebug>
 #include <QApplication>
@@ -14,9 +15,10 @@
 Player::Player(QWidget *parent)
     : QFrame(parent)
 {
+    setObjectName("mainwin");
     setWindowFlags(Qt::FramelessWindowHint);
     setFrameStyle(QFrame::StyledPanel | QFrame::Raised);
-    setStyleSheet("background: qlineargradient( x1:0 y1:0, x2:1 y2:0, stop:0 black, stop:1 gray)");
+    setStyleSheet("#mainwin {background: qlineargradient( x1:0 y1:0, x2:1 y2:0, stop:0 #141b28, stop:1 #141b28)}");
     resize(1280, 768);
     move(QApplication::desktop()->rect().center() - this->rect().center());
 
@@ -25,33 +27,38 @@ Player::Player(QWidget *parent)
     m_gridLayout->setSpacing(0);
 
     m_logoLabel = new QLabel(this);
-    m_logoLabel->setPixmap(QPixmap(":/images/logo2.png").scaled(200, 80, Qt::KeepAspectRatioByExpanding));
+    m_logoLabel->setPixmap(QPixmap(":/images/logo2.png").scaled(200, 80, Qt::KeepAspectRatio));
     m_logoLabel->setMaximumSize(200, 80);
     m_logoLabel->setMinimumSize(200, 80);
-    m_logoLabel->setStyleSheet("background: black");
+    m_logoLabel->setStyleSheet("background: transparent");
     m_gridLayout->addWidget(m_logoLabel, 0, 0, Qt::AlignCenter);
 
-    m_topWidget = new MoveWinWidget(this);
-    m_topWidget->setWin(this);
-    m_topWidget->setMaximumHeight(100);
-    m_topWidget->setMinimumHeight(100);
-    m_gridLayout->addWidget(m_topWidget, 0, 1);
+//    QGraphicsBlurEffect *blurEffect = new QGraphicsBlurEffect(this);
+//    blurEffect->setBlurRadius(1.2);
+//    blurEffect->setBlurHints(QGraphicsBlurEffect::AnimationHint);
+//    m_logoLabel->setGraphicsEffect(blurEffect);
 
-    m_leftScrollArea = new QScrollArea(this);
-    m_leftScrollArea->setStyleSheet("background: cyan");
-    m_leftScrollArea->setMaximumWidth(300);
-    m_leftScrollArea->setMinimumWidth(300);
-    m_gridLayout->addWidget(m_leftScrollArea, 1, 0, 2, 1);
+    m_topBar = new TopBar(this);
+    m_topBar->setWin(this);
+    m_topBar->setMaximumHeight(100);
+    m_topBar->setMinimumHeight(100);
+    m_gridLayout->addWidget(m_topBar, 0, 1);
+
+    m_leftPanel = new LeftPanel(this);
+    m_leftPanel->setStyleSheet("background: transparent; color: white");
+    m_leftPanel->setMaximumWidth(300);
+    m_leftPanel->setMinimumWidth(300);
+    m_gridLayout->addWidget(m_leftPanel, 1, 0, 2, 1);
 
     m_contentWidget = new QStackedWidget(this);
-    m_contentWidget->setStyleSheet("background: yellow");
+    m_contentWidget->setStyleSheet("background: transparent");
     m_gridLayout->addWidget(m_contentWidget, 1, 1);
 
-    m_controller = new Controller(this);
-    m_controller->setStyleSheet("background: pink");
-    m_controller->setMaximumHeight(100);
-    m_controller->setMinimumHeight(100);
-    m_gridLayout->addWidget(m_controller, 2, 1);
+    m_controlPanel = new ControlPanel(this);
+    m_controlPanel->setStyleSheet("ControlPanel {background: transparent}");
+    m_controlPanel->setMaximumHeight(100);
+    m_controlPanel->setMinimumHeight(100);
+    m_gridLayout->addWidget(m_controlPanel, 2, 1);
 }
 
 Player::~Player()

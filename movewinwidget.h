@@ -9,12 +9,12 @@ class MoveWinWidget : public QWidget
 public:
     explicit MoveWinWidget(QWidget *parent = nullptr);
     void setWin(QWidget *win);
+    QWidget* win();
 
 protected:
     void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
-    void mouseDoubleClickEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
 
 private:

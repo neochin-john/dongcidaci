@@ -1,5 +1,6 @@
 #include "movewinwidget.h"
 
+#include <QDebug>
 #include <QMouseEvent>
 #include <QStyleOption>
 #include <QStylePainter>
@@ -13,6 +14,11 @@ MoveWinWidget::MoveWinWidget(QWidget *parent)
 void MoveWinWidget::setWin(QWidget *win)
 {
     m_win = win;
+}
+
+QWidget* MoveWinWidget::win()
+{
+    return m_win;
 }
 
 void MoveWinWidget::paintEvent(QPaintEvent *event)
@@ -39,7 +45,7 @@ void MoveWinWidget::mousePressEvent(QMouseEvent *event)
 void MoveWinWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
-    if (!m_win)
+    if (!m_isMoving || !m_win)
     {
         return;
     }
@@ -48,28 +54,9 @@ void MoveWinWidget::mouseReleaseEvent(QMouseEvent *event)
     setCursor(Qt::ArrowCursor);
 }
 
-void MoveWinWidget::mouseDoubleClickEvent(QMouseEvent *event)
-{
-    Q_UNUSED(event);
-    if (!m_win)
-    {
-        return;
-    }
-
-    Qt::WindowStates winStates = m_win->windowState();
-    if (winStates & Qt::WindowFullScreen)
-    {
-        m_win->setWindowState(winStates & ~Qt::WindowFullScreen);
-    }
-    else
-    {
-        m_win->setWindowState(winStates | Qt::WindowFullScreen);
-    }
-}
-
 void MoveWinWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    if (!m_win)
+    if (!m_isMoving || !m_win)
     {
         return;
     }

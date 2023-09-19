@@ -5,10 +5,10 @@
 
 class QLabel;
 class QGridLayout;
-class QScrollArea;
 class QStackedWidget;
-class MoveWinWidget;
-class Controller;
+class TopBar;
+class ControlPanel;
+class LeftPanel;
 class Player : public QFrame
 {
     Q_OBJECT
@@ -20,9 +20,9 @@ public:
 private:
     QGridLayout *m_gridLayout;
     QLabel *m_logoLabel;
-    QScrollArea *m_leftScrollArea;
-    MoveWinWidget *m_topWidget;
+    LeftPanel *m_leftPanel;
+    TopBar *m_topBar;
     QStackedWidget *m_contentWidget;
-    Controller *m_controller;
+    ControlPanel *m_controlPanel;
 };
 #endif // PLAYER_H
